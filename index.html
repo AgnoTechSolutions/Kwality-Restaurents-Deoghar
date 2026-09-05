@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#C21F30">
+<title>Kwality Restaurant — Digital Menu | Deoghar</title>
+<meta name="description" content="Kwality Restaurant, Deoghar - North Indian, Chinese & South Indian multicuisine. View our digital menu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF8E7;
+    --surface:#FFFFFF;
+    --ink:#2B1B12;
+    --red:#C21F30;
+    --red-dark:#8F1522;
+    --mustard:#F2B705;
+    --mustard-light:#FBE79A;
+    --muted:#8a7358;
+    --shadow: 0 10px 26px rgba(43,27,18,0.14);
+  }
+  [data-theme="dark"]{
+    --bg:#17130F;
+    --surface:#241E19;
+    --ink:#F5EEE0;
+    --red:#FF5A6B;
+    --red-dark:#C21F30;
+    --mustard:#FFD23F;
+    --mustard-light:#3A2F1F;
+    --muted:#B3A58F;
+    --shadow: 0 10px 26px rgba(0,0,0,0.5);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Mukta',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding-bottom:40px;
+    transition:background .3s, color .3s;
+  }
+  h1,h2,h3,.display{font-family:'Alfa Slab One',cursive; font-weight:400;}
+  a{text-decoration:none; color:inherit;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  img{max-width:100%; display:block;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--red);
+    color:#FFF8E7;
+    box-shadow:var(--shadow);
+    border-bottom:4px solid var(--mustard);
+  }
+  .header-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 18px; gap:10px; flex-wrap:nowrap;
+  }
+  .brand{display:flex; align-items:center; gap:10px; min-width:0; flex-shrink:1;}
+  .logo-mark{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--mustard);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; position:relative; flex-shrink:0;
+    border:3px dashed #FFF8E7;
+    color:var(--red-dark); font-family:'Alfa Slab One',cursive;
+  }
+  .brand-text{min-width:0;}
+  .brand-text .name{font-size:20px; font-weight:400; line-height:1.1; font-family:'Alfa Slab One',cursive; letter-spacing:.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .brand-text .tagline{font-size:10px; letter-spacing:.06em; color:var(--mustard-light); opacity:.95; text-transform:uppercase; margin-top:3px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .header-actions{display:flex; align-items:center; gap:6px; flex-shrink:0;}
+  .pill-btn{
+    display:flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.3);
+    color:#FFF8E7;
+    padding:8px 10px; border-radius:999px; font-size:12.5px; font-weight:600;
+    transition:.2s;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .pill-btn.call{background:var(--mustard); color:var(--red-dark); border-color:var(--mustard); font-weight:700;}
+  .pill-btn:hover{transform:translateY(-1px); filter:brightness(1.08);}
+  .theme-toggle{
+    width:36px; height:36px; border-radius:50%;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3);
+    color:#FFF8E7; font-size:15px; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  @media (max-width:480px){
+    .hide-sm{display:none;}
+    .header-inner{padding:10px 12px; gap:8px;}
+    .brand-text .name{font-size:17px;}
+    .pill-btn{padding:8px 10px;}
+  }
+
+  /* ---------- Ad Carousel ---------- */
+  .carousel-section{padding:18px 0 6px;}
+  .carousel{
+    max-width:1100px; margin:0 auto; position:relative;
+    border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+    border:2px solid var(--mustard);
+  }
+  .carousel-track{display:flex; transition:transform .55s cubic-bezier(.65,0,.35,1);}
+  .slide{
+    min-width:100%; position:relative; overflow:hidden;
+    background:var(--red-dark);
+    aspect-ratio:1672/941;
+  }
+  .slide img{
+    width:100%; height:100%; object-fit:cover; object-position:center;
+    background:#fff;
+  }
+  .slide .caption{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(0deg, rgba(43,20,10,0.78) 0%, rgba(43,20,10,0.3) 60%, transparent 100%);
+    color:#fff; padding:30px 20px 14px; display:flex; flex-direction:column; gap:8px;
+  }
+  .slide .caption h3{font-size:17px; color:var(--mustard-light);}
+  .slide .caption p{font-size:12.5px; color:rgba(255,255,255,0.88); max-width:520px; font-family:'Mukta',sans-serif;}
+  .slide .cta-row{display:flex; gap:10px; margin-top:2px; flex-wrap:wrap;}
+  .slide .cta{
+    padding:8px 14px; border-radius:999px; font-size:12.5px; font-weight:700;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .cta.call{background:var(--mustard); color:var(--red-dark);}
+  .cta.visit{background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.5);}
+  @media (max-width:600px){ .carousel{max-width:100%; border-radius:0;} }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(0,0,0,0.32); color:#fff; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:16px; z-index:5;
+  }
+  .carousel-arrow.prev{left:10px;} .carousel-arrow.next{right:10px;}
+  .carousel-dots{
+    display:flex; justify-content:center; gap:7px; padding:12px 0 4px;
+  }
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--mustard-light); cursor:pointer;}
+  .dot.active{background:var(--red); width:22px; border-radius:5px; transition:.3s;}
+
+  /* ---------- Search & Tabs ---------- */
+  .toolbar{max-width:1100px; margin:22px auto 0; padding:0 18px;}
+  .search-box{
+    display:flex; align-items:center; gap:8px;
+    background:var(--surface); border:1.5px solid var(--mustard); border-radius:999px;
+    padding:11px 16px; box-shadow:0 2px 8px rgba(43,27,18,0.06);
+  }
+  .search-box input{
+    border:none; outline:none; flex:1; font-size:14px; font-family:inherit; background:transparent; color:var(--ink);
+  }
+  .tabs{
+    display:flex; gap:8px; overflow-x:auto; padding:16px 2px 6px;
+    scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex-shrink:0; padding:8px 16px; border-radius:999px; font-size:13px; font-weight:700;
+    background:var(--surface); border:1.5px solid var(--red); color:var(--red);
+  }
+  .tab.active{background:var(--red); color:#FFF8E7; border-color:var(--red);}
+
+  /* ---------- Menu ---------- */
+  .menu-section{max-width:1100px; margin:6px auto 0; padding:10px 18px 30px;}
+  .menu-heading{display:flex; align-items:baseline; gap:8px; margin:10px 2px 14px;}
+  .menu-heading h2{font-size:22px; color:var(--red);}
+  .menu-heading span{font-size:13px; color:var(--muted);}
+  .menu-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px;
+  }
+  .cat-section{margin-bottom:28px;}
+  .cat-section:last-child{margin-bottom:0;}
+  .cat-section-title{
+    font-size:15px; color:var(--red); margin:0 2px 12px;
+    padding-bottom:6px; border-bottom:2px dashed var(--mustard);
+    display:inline-block; font-family:'Alfa Slab One',cursive; font-weight:400;
+  }
+  .item-card{
+    background:var(--surface); border-radius:10px; box-shadow:0 3px 10px rgba(43,27,18,0.08);
+    position:relative; padding:18px 16px 16px; opacity:0; transform:translateY(14px);
+    transition:opacity .45s ease, transform .45s ease, background .3s;
+    border:1.5px dashed var(--mustard);
+  }
+  .item-card.show{opacity:1; transform:translateY(0);}
+  .item-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .item-name{font-weight:700; font-size:14.5px; display:flex; align-items:center; gap:6px; color:var(--ink);}
+  .veg-dot{width:11px; height:11px; border:1.5px solid #2e7d32; border-radius:2px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .veg-dot::after{content:""; width:5px; height:5px; background:#2e7d32; border-radius:50%;}
+  .nonveg-dot{width:11px; height:11px; border:1.5px solid var(--red); border-radius:2px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .nonveg-dot::after{content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:6px solid var(--red);}
+  .item-price{font-weight:700; color:var(--red); font-size:14px; white-space:nowrap;}
+  .item-desc{font-size:12px; color:var(--muted); margin-top:6px; line-height:1.4;}
+  .item-cat{font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--mustard); background:var(--red-dark); display:inline-block; padding:2px 6px; border-radius:4px; margin-top:8px; font-weight:700;}
+  .no-results{text-align:center; padding:40px 10px; color:var(--muted); font-size:14px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--red-dark); color:#FFF8E7; margin-top:30px; padding:34px 18px 22px; border-top:4px solid var(--mustard);}
+  .footer-inner{max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:24px;}
+  footer h4{font-family:'Alfa Slab One',cursive; font-weight:400; font-size:16px; margin-bottom:10px; color:var(--mustard-light);}
+  footer p, footer a{font-size:13px; color:rgba(255,248,231,0.85); line-height:1.9; display:block;}
+  .social-row{display:flex; gap:10px; margin-top:6px;}
+  .social-row a{
+    width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.1);
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .footer-bottom{
+    max-width:1100px; margin:26px auto 0; padding-top:16px; border-top:1px solid rgba(242,183,5,0.3);
+    font-size:12px; color:rgba(255,248,231,0.6); text-align:center;
+  }
+  @media (max-width:720px){
+    .footer-inner{grid-template-columns:1fr;}
+    .brand-text .name{font-size:17px;}
+  }
+
+  /* ---------- Scroll to top ---------- */
+  #toTop{
+    position:fixed; bottom:20px; right:18px; width:44px; height:44px; border-radius:50%;
+    background:var(--mustard); color:var(--red-dark); font-size:18px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);
+    opacity:0; pointer-events:none; transition:opacity .3s; z-index:60;
+  }
+  #toTop.show{opacity:1; pointer-events:auto;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo-mark"><img src="images/logo.jpg" alt="Kwality Restaurant logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.parentElement.textContent='K';"></div>
+      <div class="brand-text">
+        <div class="name">Kwality Restaurant</div>
+        <div class="tagline">Multicuisine · Deoghar</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a class="pill-btn" href="https://maps.google.com/?q=Kwality+Restaurant+Tower+Chowk+Station+Road+Shivganga+Muhalla+Deoghar+Jharkhand+814112" target="_blank" rel="noopener">📍<span class="hide-sm"> Directions</span></a>
+      <a class="pill-btn call" href="tel:+916201740419">📞<span class="hide-sm"> Call</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search-box">
+    <span>🔍</span>
+    <input type="text" id="searchInput" placeholder="Search dosa, paneer, biryani, chicken...">
+  </div>
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<section class="menu-section">
+  <div class="menu-heading">
+    <h2>Our Menu</h2>
+    <span id="itemCount"></span>
+  </div>
+  <div id="menuGrid"></div>
+  <div class="no-results" id="noResults" style="display:none;">No dish found. Try another name or clear the search.</div>
+</section>
+
+<section class="carousel-section">
+  <div style="max-width:1100px;margin:0 auto 8px;padding:0 18px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;">Advertisement</div>
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="track"><!-- slides injected by JS from the advertisements array below --></div>
+    <button class="carousel-arrow prev" aria-label="Previous ad">‹</button>
+    <button class="carousel-arrow next" aria-label="Next ad">›</button>
+  </div>
+  <div class="carousel-dots" id="dots"></div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>Kwality Restaurant</h4>
+      <p>A well-known multicuisine family restaurant near Tower Chowk, Deoghar — serving North Indian, Chinese and South Indian food, both veg and non-veg.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="https://maps.google.com/?q=Kwality+Restaurant+Tower+Chowk+Station+Road+Shivganga+Muhalla+Deoghar+Jharkhand+814112" target="_blank" rel="noopener" aria-label="Map">🗺️</a>
+      </div>
+    </div>
+    <div>
+      <h4>Visit Us</h4>
+      <p>📍 Tower Chowk, Station Road, Shivganga Muhalla,<br>Deoghar, Jharkhand – 814112</p>
+      <p>🕒 Call ahead to confirm today's hours</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="tel:+916201740419">📞 +91 62017 40419</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 AgnoTech Solutions Pvt. Ltd. All Rights Reserved. · Digital Menu for Kwality Restaurant, Deoghar</div>
+</footer>
+
+<button id="toTop" aria-label="Scroll to top">↑</button>
+
+<script>
+// ---------------- Theme Toggle ----------------
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(theme){
+  if(theme === 'dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+    themeToggle.textContent = '☀️';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    themeToggle.textContent = '🌙';
+  }
+}
+(function initTheme(){
+  let saved = null;
+  try { saved = localStorage.getItem('kwality-theme'); } catch(e){}
+  if(saved){
+    applyTheme(saved);
+  } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
+})();
+themeToggle.addEventListener('click', ()=>{
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem('kwality-theme', next); } catch(e){}
+});
+
+// ---------------- Menu Data ----------------
+// Real priced menu for Kwality Restaurant, Deoghar, transcribed from the
+// owner's own menu card (25-8-26). A handful of Paneer dishes had their
+// names and prices visually jumbled on the scanned page and couldn't be
+// reliably matched, so those show "Ask Staff" rather than a guessed price.
+const menu = [
+  {name:"Tea", price:25, cat:"Beverages", desc:"", veg:true},
+  {name:"Special Tea", price:40, cat:"Beverages", desc:"", veg:true},
+  {name:"Coffee", price:50, cat:"Beverages", desc:"", veg:true},
+  {name:"Milk", price:60, cat:"Beverages", desc:"", veg:true},
+  {name:"Cold Drink (200ml)", price:15, cat:"Beverages", desc:"", veg:true},
+  {name:"Masala Cold Drink", price:40, cat:"Beverages", desc:"", veg:true},
+  {name:"Mineral Water", price:"MRP", cat:"Beverages", desc:"", veg:true},
+  {name:"Lassi", price:100, cat:"Beverages", desc:"", veg:true},
+  {name:"Fresh Lime Soda", price:60, cat:"Beverages", desc:"", veg:true},
+  {name:"Cold Coffee", price:100, cat:"Shake", desc:"", veg:true},
+  {name:"Cold Coffee with Ice Cream", price:130, cat:"Shake", desc:"", veg:true},
+  {name:"Strawberry Shake", price:130, cat:"Shake", desc:"", veg:true},
+  {name:"Mango Shake", price:130, cat:"Shake", desc:"", veg:true},
+  {name:"Chocolate Shake", price:130, cat:"Shake", desc:"", veg:true},
+  {name:"Butterscotch Shake", price:130, cat:"Shake", desc:"", veg:true},
+  {name:"Kesar Pista Shake", price:140, cat:"Shake", desc:"", veg:true},
+  {name:"Bread Toast (Butter / Jam)", price:70, cat:"Breakfast", desc:"", veg:true},
+  {name:"Aloo Paratha", price:70, cat:"Breakfast", desc:"", veg:true},
+  {name:"Aloo Paratha With Butter", price:90, cat:"Breakfast", desc:"", veg:true},
+  {name:"Paneer Paratha", price:90, cat:"Breakfast", desc:"", veg:true},
+  {name:"Paneer Paratha With Butter", price:110, cat:"Breakfast", desc:"", veg:true},
+  {name:"Plain Paratha", price:40, cat:"Breakfast", desc:"", veg:true},
+  {name:"Plain Paratha With Butter", price:60, cat:"Breakfast", desc:"", veg:true},
+  {name:"Puri Sabji (4pc)", price:80, cat:"Breakfast", desc:"", veg:true},
+  {name:"Puri (1pc)", price:15, cat:"Breakfast", desc:"", veg:true},
+  {name:"Chola Bhatura (2pc)", price:120, cat:"Breakfast", desc:"", veg:true},
+  {name:"Bhatura (1pc)", price:25, cat:"Breakfast", desc:"", veg:true},
+  {name:"Onion Pakora", price:130, cat:"Breakfast", desc:"", veg:true},
+  {name:"Paneer Pakora (8pc)", price:180, cat:"Breakfast", desc:"", veg:true},
+  {name:"Plain Maggi", price:60, cat:"Breakfast", desc:"", veg:true},
+  {name:"Plain Dosa", price:100, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Plain Dosa", price:120, cat:"South Indian", desc:"", veg:true},
+  {name:"Masala Dosa", price:120, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Masala Dosa", price:140, cat:"South Indian", desc:"", veg:true},
+  {name:"Onion Plain Dosa", price:120, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Onion Plain Dosa", price:140, cat:"South Indian", desc:"", veg:true},
+  {name:"Onion Butter Masala Dosa", price:160, cat:"South Indian", desc:"", veg:true},
+  {name:"Cheese Plain Dosa", price:140, cat:"South Indian", desc:"", veg:true},
+  {name:"Onion Cheese Plain Dosa", price:160, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Onion Cheese Plain Dosa", price:180, cat:"South Indian", desc:"", veg:true},
+  {name:"Cheese Masala Dosa", price:160, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Cheese Masala Dosa", price:180, cat:"South Indian", desc:"", veg:true},
+  {name:"Butter Onion Cheese Masala Dosa", price:200, cat:"South Indian", desc:"", veg:true},
+  {name:"Paneer Masala Dosa Special", price:200, cat:"South Indian", desc:"", veg:true},
+  {name:"Paper Plain Dosa (Big)", price:200, cat:"South Indian", desc:"", veg:true},
+  {name:"Paper Masala Dosa (Big)", price:220, cat:"South Indian", desc:"", veg:true},
+  {name:"Idli (2pc)", price:80, cat:"South Indian", desc:"", veg:true},
+  {name:"Mix Uttapam", price:160, cat:"South Indian", desc:"", veg:true},
+  {name:"Vegetable Chowmein", price:140, cat:"Chinese", desc:"", veg:true},
+  {name:"Vegetable Garlic Chowmein", price:160, cat:"Chinese", desc:"", veg:true},
+  {name:"Paneer Chowmein", price:200, cat:"Chinese", desc:"", veg:true},
+  {name:"Mix Chowmein", price:220, cat:"Chinese", desc:"", veg:true},
+  {name:"Paneer Chilly Dry / Gravy", price:260, cat:"Chinese", desc:"", veg:true},
+  {name:"Mushroom Chilly Dry / Gravy", price:280, cat:"Chinese", desc:"", veg:true},
+  {name:"Baby Corn Chilly Dry / Gravy", price:250, cat:"Chinese", desc:"", veg:true},
+  {name:"Veg Manchurian", price:200, cat:"Chinese", desc:"", veg:true},
+  {name:"Paneer Manchurian", price:280, cat:"Chinese", desc:"", veg:true},
+  {name:"Mushroom Manchurian", price:280, cat:"Chinese", desc:"", veg:true},
+  {name:"Veg Fried Rice", price:150, cat:"Chinese", desc:"", veg:true},
+  {name:"Mix Fried Rice", price:180, cat:"Chinese", desc:"", veg:true},
+  {name:"Crispy Baby Corn Chilly", price:250, cat:"Veg Starter", desc:"", veg:true},
+  {name:"Crispy Chana Chilly", price:200, cat:"Veg Starter", desc:"", veg:true},
+  {name:"French Fries", price:120, cat:"Veg Starter", desc:"", veg:true},
+  {name:"Paneer 65 (8pc)", price:260, cat:"Veg Starter", desc:"", veg:true},
+  {name:"Masala Papad", price:60, cat:"Veg Starter", desc:"", veg:true},
+  {name:"Paneer Tikka (8pc)", price:300, cat:"Veg Starter", desc:"", veg:true},
+  {name:"Vegetable Soup", price:120, cat:"Veg Soup", desc:"", veg:true},
+  {name:"Veg Hot & Sour Soup", price:120, cat:"Veg Soup", desc:"", veg:true},
+  {name:"Veg Sweet Corn Soup", price:120, cat:"Veg Soup", desc:"", veg:true},
+  {name:"Veg Manchow Soup", price:140, cat:"Veg Soup", desc:"", veg:true},
+  {name:"Tomato Soup", price:140, cat:"Veg Soup", desc:"", veg:true},
+  {name:"Veg Grill Cheese Sandwich", price:120, cat:"Sandwich", desc:"", veg:true},
+  {name:"Paneer Grill Cheese Sandwich", price:180, cat:"Sandwich", desc:"", veg:true},
+  {name:"Kids Pizza", price:120, cat:"Pizza & Burger", desc:"", veg:true},
+  {name:"Veg Pizza", price:180, cat:"Pizza & Burger", desc:"", veg:true},
+  {name:"Paneer Pizza", price:230, cat:"Pizza & Burger", desc:"", veg:true},
+  {name:"Aloo Tikki Burger", price:60, cat:"Pizza & Burger", desc:"", veg:true},
+  {name:"Veg Tikki Burger", price:90, cat:"Pizza & Burger", desc:"", veg:true},
+  {name:"Tandoori Roti", price:20, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Tandoori Butter Roti", price:30, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Laccha Paratha", price:60, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Butter Laccha Paratha", price:80, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Plain Naan", price:50, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Butter Naan", price:60, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Garlic Naan", price:100, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Masala Kulcha", price:100, cat:"Tandoori Items", desc:"", veg:true},
+  {name:"Steam Rice", price:80, cat:"Rice & Biryani", desc:"", veg:true},
+  {name:"Jeera Fried Rice", price:150, cat:"Rice & Biryani", desc:"", veg:true},
+  {name:"Vegetable Pulao", price:180, cat:"Rice & Biryani", desc:"", veg:true},
+  {name:"Vegetable Biryani", price:180, cat:"Rice & Biryani", desc:"", veg:true},
+  {name:"Paneer Tikka Biryani (4pc)", price:290, cat:"Rice & Biryani", desc:"", veg:true},
+  {name:"Dal Plain", price:60, cat:"Dal", desc:"", veg:true},
+  {name:"Dal Fry", price:100, cat:"Dal", desc:"", veg:true},
+  {name:"Butter Dal Fry", price:120, cat:"Dal", desc:"", veg:true},
+  {name:"Dal Tarka", price:130, cat:"Dal", desc:"", veg:true},
+  {name:"Butter Dal Tarka", price:150, cat:"Dal", desc:"", veg:true},
+  {name:"Dal Makhani", price:180, cat:"Dal", desc:"", veg:true},
+  {name:"Aloo Dum", price:180, cat:"Vegetables", desc:"", veg:true},
+  {name:"Seasonal Veg", price:180, cat:"Vegetables", desc:"", veg:true},
+  {name:"Palak Corn", price:220, cat:"Vegetables", desc:"", veg:true},
+  {name:"Aloo Do Pyaza", price:200, cat:"Vegetables", desc:"", veg:true},
+  {name:"Aloo Gobi Mutter", price:200, cat:"Vegetables", desc:"", veg:true},
+  {name:"Aloo Mutter Tomato", price:200, cat:"Vegetables", desc:"", veg:true},
+  {name:"Gobi Masala", price:200, cat:"Vegetables", desc:"", veg:true},
+  {name:"Chana Masala", price:160, cat:"Vegetables", desc:"", veg:true},
+  {name:"Vegetable Kofta", price:220, cat:"Vegetables", desc:"", veg:true},
+  {name:"Vegetable Jaipuri", price:220, cat:"Vegetables", desc:"", veg:true},
+  {name:"Paneer Butter Masala", price:240, cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Do Pyaza", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Kofta", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Karahi", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Jhalfrezi", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Jaipuri", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Hyderabadi", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Tikka Masala (8pc)", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Shahi Paneer", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Palak Paneer", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Paneer Lababdar Gravy (8pc)", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Mix Paneer", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Mutter Paneer", price:"Ask Staff", cat:"Paneer", desc:"", veg:true},
+  {name:"Mushroom Butter Masala", price:280, cat:"Mushroom", desc:"", veg:true},
+  {name:"Mushroom Do Pyaza", price:280, cat:"Mushroom", desc:"", veg:true},
+  {name:"Mushroom Paneer Masala", price:280, cat:"Mushroom", desc:"", veg:true},
+  {name:"Mushroom Karahi", price:280, cat:"Mushroom", desc:"", veg:true},
+  {name:"Mushroom Mutter Masala", price:280, cat:"Mushroom", desc:"", veg:true},
+  {name:"Aloo Bhujiya", price:100, cat:"Bhujiya", desc:"", veg:true},
+  {name:"Aloo Parwal Bhujiya", price:130, cat:"Bhujiya", desc:"", veg:true},
+  {name:"Aloo Methi Jeera", price:160, cat:"Bhujiya", desc:"", veg:true},
+  {name:"Aloo Gobi Bhujiya", price:150, cat:"Bhujiya", desc:"", veg:true},
+  {name:"Aloo Gobi Mutter Bhujiya", price:170, cat:"Bhujiya", desc:"", veg:true},
+  {name:"Vanilla / Strawberry (Scoop)", price:60, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Chocolate / Mango (Scoop)", price:80, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Butterscotch (Scoop)", price:80, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Kesar Pista (Scoop)", price:90, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Chocobar", price:25, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Bombay Kulfi", price:25, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Raj Bhog Kulfi", price:30, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Punjabi Kulfi", price:30, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Butterscotch Tricone", price:50, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Chocolate Tricone", price:50, cat:"Ice Cream", desc:"", veg:true},
+  {name:"Green Salad", price:90, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Onion Salad", price:30, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Roasted Papad", price:10, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Fried Papad", price:20, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Curd", price:80, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Mix Raita", price:100, cat:"Salad & Sides", desc:"", veg:true},
+  {name:"Egg Boiled (2pc)", price:50, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Omelette (2pc)", price:70, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Egg Poach (2pc)", price:70, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Egg Bhujiya (2pc)", price:70, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Egg French Toast (2pc)", price:90, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Egg Pakora (8pc)", price:160, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Chicken Pakora (8pc)", price:260, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Chicken Liver Pakora (8pc)", price:180, cat:"Non-Veg Breakfast", desc:"", veg:false},
+  {name:"Chicken Soup", price:150, cat:"Non-Veg Soup", desc:"", veg:false},
+  {name:"Chicken Hot & Sour Soup", price:150, cat:"Non-Veg Soup", desc:"", veg:false},
+  {name:"Chicken Sweet Corn Soup", price:150, cat:"Non-Veg Soup", desc:"", veg:false},
+  {name:"Chicken Manchow Soup", price:170, cat:"Non-Veg Soup", desc:"", veg:false},
+  {name:"Egg Chowmein (2pc)", price:150, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Chowmein", price:180, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Garlic Chowmein", price:200, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Liver Chilly (8pc)", price:180, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Chilly Bone-In (8pc)", price:260, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Chilly Boneless (8pc)", price:290, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Chilly Garlic (8pc)", price:300, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Sweet & Sour Boneless (8pc)", price:300, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Manchurian (8pc)", price:310, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Lollipop (6pc)", price:280, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken 65 Boneless (8pc)", price:290, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Egg Fried Rice", price:160, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Chicken Fried Rice", price:190, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Mix Fried Rice (Non-Veg)", price:220, cat:"Non-Veg Chinese", desc:"", veg:false},
+  {name:"Egg Dum Biryani (1pc / 2pc)", price:"₹100 / ₹170", cat:"Non-Veg Biryani", desc:"", veg:false},
+  {name:"Chicken Egg Dum Biryani (1pc / 2pc)", price:"₹130 / ₹200", cat:"Non-Veg Biryani", desc:"", veg:false},
+  {name:"Chicken Tandoori Dum Biryani (2pc)", price:290, cat:"Non-Veg Biryani", desc:"", veg:false},
+  {name:"Chicken Tandoori (4pc / 8pc)", price:"₹210 / ₹400", cat:"Tandoori (Non-Veg)", desc:"", veg:false},
+  {name:"Egg Bhujiya (2pc)", price:80, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Egg Curry (2pc)", price:100, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Egg Masala (2pc)", price:120, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Egg Butter Masala (2pc)", price:140, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Egg Do Pyaza (2pc)", price:160, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Egg Tarka (2pc)", price:180, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Omelette Curry (2pc)", price:100, cat:"Main Course Egg", desc:"", veg:false},
+  {name:"Fish Fry (2pc)", price:150, cat:"Fish", desc:"", veg:false},
+  {name:"Fish Curry (2pc)", price:170, cat:"Fish", desc:"", veg:false},
+  {name:"Fish Masala (2pc)", price:180, cat:"Fish", desc:"", veg:false},
+  {name:"Fish Butter Masala (2pc)", price:200, cat:"Fish", desc:"", veg:false},
+  {name:"Fish Do Pyaza (2pc)", price:220, cat:"Fish", desc:"", veg:false},
+  {name:"Chicken Curry (2pc / 4pc)", price:"₹180 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Masala (2pc / 4pc)", price:"₹190 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Karahi (2pc / 4pc)", price:"₹190 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Kossa (2pc / 4pc)", price:"₹190 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Hyderabadi Chicken (2pc / 4pc)", price:"₹190 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Do Pyaza (2pc / 4pc)", price:"₹190 / ₹300", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Butter Masala (2pc / 4pc)", price:"₹220 / ₹350", cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Liver Masala", price:180, cat:"Chicken", desc:"", veg:false},
+  {name:"Chicken Bharta", price:300, cat:"Chicken", desc:"", veg:false},
+];
+
+const categories = ["All", ...Array.from(new Set(menu.map(i=>i.cat)))];
+let activeCat = "All";
+
+const tabsEl = document.getElementById('tabs');
+const gridEl = document.getElementById('menuGrid');
+const noResults = document.getElementById('noResults');
+const itemCount = document.getElementById('itemCount');
+const searchInput = document.getElementById('searchInput');
+
+function renderTabs(){
+  tabsEl.innerHTML = categories.map(c=>
+    `<button class="tab ${c===activeCat?'active':''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  tabsEl.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeCat = btn.dataset.cat;
+      searchInput.value = '';
+      renderTabs();
+      renderMenu();
+    });
+  });
+}
+
+function cardHTML(i){
+  return `
+    <div class="item-card">
+      <div class="item-top">
+        <div class="item-name"><span class="${i.veg ? 'veg-dot' : 'nonveg-dot'}"></span>${i.name}</div>
+        <div class="item-price">${typeof i.price === 'number' ? '₹'+i.price : i.price}</div>
+      </div>
+      <div class="item-desc">${i.desc}</div>
+      <div class="item-cat">${i.cat}</div>
+    </div>`;
+}
+
+function renderMenu(){
+  const q = searchInput.value.trim().toLowerCase();
+  let items;
+  let grouped = false;
+
+  if(q){
+    items = menu.filter(i => i.name.toLowerCase().includes(q));
+  } else if(activeCat === "All"){
+    items = menu;
+    grouped = true;
+  } else {
+    items = menu.filter(i => i.cat===activeCat);
+  }
+
+  itemCount.textContent = items.length ? `${items.length} item${items.length>1?'s':''}` : '';
+  noResults.style.display = items.length ? 'none' : 'block';
+
+  if(!items.length){
+    gridEl.innerHTML = '';
+    return;
+  }
+
+  if(grouped){
+    const cats = categories.filter(c => c !== "All");
+    gridEl.innerHTML = cats.map(cat=>{
+      const catItems = items.filter(i=>i.cat===cat);
+      if(!catItems.length) return '';
+      return `
+        <div class="cat-section">
+          <h3 class="cat-section-title">${cat}</h3>
+          <div class="menu-grid">${catItems.map(cardHTML).join('')}</div>
+        </div>`;
+    }).join('');
+  } else {
+    gridEl.innerHTML = `<div class="menu-grid">${items.map(cardHTML).join('')}</div>`;
+  }
+
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.item-card').forEach((el,idx)=>{
+      setTimeout(()=>el.classList.add('show'), idx*15);
+    });
+  });
+}
+
+searchInput.addEventListener('input', renderMenu);
+renderTabs();
+renderMenu();
+
+// ---------------- Carousel ----------------
+// Put your ad images in an "images" folder next to this index.html file
+// or this will 404.
+const advertisements = [
+    {
+        id: "ad-001",
+        image: "images/Self_Ads_Hindi.png",
+        title: "Agnotech Solutions",
+        description: "Your Digital Partner",
+        phone: "+91 96934 33741",
+        link: "#"
+    },
+    {
+        id: "ad-002",
+        image: "images/Self_Ads_English.png",
+        title: "Agnotech Solutions",
+        description: "Your Digital Partner",
+        phone: "+91 79030 82642",
+        link: "#"
+    },
+    {
+        id: "ad-003",
+        image: "images/Self_Ads_Hindi.png",
+        title: "Agnotech Solutions",
+        description: "Your Digital Partner",
+        phone: "+91 96934 33741",
+        link: "#"
+    },
+    {
+        id: "ad-004",
+        image: "images/Self_Ads_English.png",
+        title: "Agnotech Solutions",
+        description: "Your Digital Partner",
+        phone: "+91 79030 82642",
+        link: "#"
+    }
+];
+
+const track = document.getElementById('track');
+track.innerHTML = advertisements.map(ad => `
+  <div class="slide" data-id="${ad.id}">
+    <img src="${ad.image}" alt="${ad.title}" loading="lazy"
+         onerror="this.closest('.slide').style.background='#8F1522'; this.style.display='none';">
+    <div class="caption">
+      <h3>${ad.title}</h3>
+      <p>${ad.description}</p>
+      <div class="cta-row">
+        <a class="cta call" href="tel:${ad.phone.replace(/\s+/g,'')}">📞 Call Now</a>
+        <a class="cta visit" href="${ad.link}" target="_blank" rel="noopener">📍 Visit</a>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+const slides = track.children;
+const dotsEl = document.getElementById('dots');
+let current = 0;
+let timer;
+
+for(let i=0;i<slides.length;i++){
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0 ? ' active' : '');
+  d.addEventListener('click', ()=>goTo(i));
+  dotsEl.appendChild(d);
+}
+
+function goTo(i){
+  current = (i + slides.length) % slides.length;
+  track.style.transform = `translateX(-${current*100}%)`;
+  [...dotsEl.children].forEach((d,idx)=>d.classList.toggle('active', idx===current));
+}
+function next(){ goTo(current+1); }
+function prev(){ goTo(current-1); }
+
+document.querySelector('.carousel-arrow.next').addEventListener('click', ()=>{ next(); resetTimer(); });
+document.querySelector('.carousel-arrow.prev').addEventListener('click', ()=>{ prev(); resetTimer(); });
+
+function startTimer(){ timer = setInterval(next, 4200); }
+function resetTimer(){ clearInterval(timer); startTimer(); }
+startTimer();
+
+const carouselEl = document.getElementById('carousel');
+carouselEl.addEventListener('mouseenter', ()=>clearInterval(timer));
+carouselEl.addEventListener('mouseleave', startTimer);
+
+let touchStartX = 0;
+carouselEl.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; }, {passive:true});
+carouselEl.addEventListener('touchend', e=>{
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if(Math.abs(dx) > 40){ dx < 0 ? next() : prev(); resetTimer(); }
+}, {passive:true});
+
+// ---------------- Scroll to top ----------------
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', ()=>{
+  toTop.classList.toggle('show', window.scrollY > 400);
+});
+toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+</body>
+</html>
